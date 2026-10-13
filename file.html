@@ -1,0 +1,868 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="Connect Electrical SE — Your trusted local electricians in Mount Gambier, SA. Residential, Commercial, Solar, Battery & more. Connecting You.">
+    <title>Connect Electrical SE | Connecting You</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;600;700;800&family=Open+Sans:wght@400;600&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css">
+    <style>
+        /* ===== RESET & BASE ===== */
+        *, *::before, *::after { margin: 0; padding: 0; box-sizing: border-box; }
+        html { scroll-behavior: smooth; }
+        body {
+            font-family: 'Open Sans', sans-serif;
+            color: #fff;
+            background: #000;
+            overflow-x: hidden;
+        }
+        a { text-decoration: none; color: inherit; }
+        ul { list-style: none; }
+        img { max-width: 100%; display: block; }
+
+        /* ===== COLOURS ===== */
+        :root {
+            --green: #00B140;
+            --green-dark: #009933;
+            --black: #000000;
+            --white: #ffffff;
+            --grey-dark: #111111;
+            --grey-mid: #1a1a1a;
+            --grey-light: #2a2a2a;
+        }
+
+        /* ===== NAVIGATION ===== */
+        .navbar {
+            position: fixed;
+            top: 0;
+            width: 100%;
+            z-index: 1000;
+            background: rgba(0, 0, 0, 0.95);
+            backdrop-filter: blur(10px);
+            padding: 15px 0;
+            transition: all 0.3s ease;
+        }
+        .navbar.scrolled {
+            padding: 10px 0;
+            box-shadow: 0 2px 20px rgba(0, 177, 64, 0.3);
+        }
+        .nav-container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 20px;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+        .nav-logo {
+            font-family: 'Montserrat', sans-serif;
+            font-weight: 800;
+            font-size: 1.4rem;
+            color: var(--green);
+        }
+        .nav-logo span { color: var(--white); }
+        .nav-links { display: flex; gap: 30px; }
+        .nav-links a {
+            font-family: 'Montserrat', sans-serif;
+            font-weight: 600;
+            font-size: 0.9rem;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+            transition: color 0.3s;
+        }
+        .nav-links a:hover { color: var(--green); }
+        .nav-phone {
+            display: flex;
+            align-items: center;
+            gap: 8px;
+            background: var(--green);
+            color: var(--white);
+            padding: 10px 20px;
+            border-radius: 50px;
+            font-family: 'Montserrat', sans-serif;
+            font-weight: 700;
+            font-size: 0.9rem;
+            transition: background 0.3s;
+        }
+        .nav-phone:hover { background: var(--green-dark); }
+        .hamburger { display: none; flex-direction: column; cursor: pointer; gap: 5px; }
+        .hamburger span { width: 25px; height: 3px; background: var(--white); border-radius: 3px; transition: 0.3s; }
+
+        /* ===== HERO ===== */
+        .hero {
+            min-height: 100vh;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            text-align: center;
+            padding: 120px 20px 80px;
+            background: linear-gradient(135deg, rgba(0,0,0,0.85) 0%, rgba(0,0,0,0.6) 100%),
+                        url('hero-bg.jpg') center/cover no-repeat;
+            /* Replace hero-bg.jpg with your Blue Lake photo */
+            position: relative;
+        }
+        .hero::after {
+            content: '';
+            position: absolute;
+            bottom: 0;
+            left: 0;
+            right: 0;
+            height: 150px;
+            background: linear-gradient(transparent, var(--black));
+        }
+        .hero-content { position: relative; z-index: 2; max-width: 800px; }
+        .hero-tagline {
+            font-family: 'Montserrat', sans-serif;
+            font-size: 1.2rem;
+            font-weight: 600;
+            color: var(--green);
+            text-transform: uppercase;
+            letter-spacing: 4px;
+            margin-bottom: 20px;
+        }
+        .hero h1 {
+            font-family: 'Montserrat', sans-serif;
+            font-size: 3.5rem;
+            font-weight: 800;
+            line-height: 1.1;
+            margin-bottom: 20px;
+        }
+        .hero h1 .highlight { color: var(--green); }
+        .hero p {
+            font-size: 1.2rem;
+            color: rgba(255,255,255,0.8);
+            margin-bottom: 40px;
+            max-width: 600px;
+            margin-left: auto;
+            margin-right: auto;
+        }
+        .hero-buttons { display: flex; gap: 15px; justify-content: center; flex-wrap: wrap; }
+        .btn {
+            display: inline-flex;
+            align-items: center;
+            gap: 10px;
+            padding: 16px 32px;
+            border-radius: 50px;
+            font-family: 'Montserrat', sans-serif;
+            font-weight: 700;
+            font-size: 1rem;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+            transition: all 0.3s;
+            border: none;
+            cursor: pointer;
+        }
+        .btn-primary { background: var(--green); color: var(--white); }
+        .btn-primary:hover { background: var(--green-dark); transform: translateY(-2px); box-shadow: 0 10px 30px rgba(0,177,64,0.3); }
+        .btn-outline { background: transparent; color: var(--white); border: 2px solid var(--white); }
+        .btn-outline:hover { background: var(--white); color: var(--black); transform: translateY(-2px); }
+
+        /* ===== SECTION COMMON ===== */
+        .section { padding: 100px 20px; }
+        .section-container { max-width: 1200px; margin: 0 auto; }
+        .section-header { text-align: center; margin-bottom: 60px; }
+        .section-header h2 {
+            font-family: 'Montserrat', sans-serif;
+            font-size: 2.5rem;
+            font-weight: 800;
+            margin-bottom: 15px;
+        }
+        .section-header h2 .highlight { color: var(--green); }
+        .section-header p { color: rgba(255,255,255,0.7); font-size: 1.1rem; max-width: 600px; margin: 0 auto; }
+        .green-line { width: 60px; height: 4px; background: var(--green); margin: 0 auto 20px; border-radius: 2px; }
+
+        /* ===== STATS BAR ===== */
+        .stats {
+            background: var(--green);
+            padding: 40px 20px;
+        }
+        .stats-container {
+            max-width: 1200px;
+            margin: 0 auto;
+            display: grid;
+            grid-template-columns: repeat(4, 1fr);
+            gap: 30px;
+            text-align: center;
+        }
+        .stat h3 {
+            font-family: 'Montserrat', sans-serif;
+            font-size: 2.5rem;
+            font-weight: 800;
+        }
+        .stat p {
+            font-size: 0.95rem;
+            font-weight: 600;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+            margin-top: 5px;
+        }
+
+        /* ===== ABOUT ===== */
+        .about { background: var(--grey-dark); }
+        .about-grid {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 60px;
+            align-items: center;
+        }
+        .about-text h3 {
+            font-family: 'Montserrat', sans-serif;
+            font-size: 1.8rem;
+            font-weight: 700;
+            margin-bottom: 20px;
+        }
+        .about-text p {
+            color: rgba(255,255,255,0.8);
+            line-height: 1.8;
+            margin-bottom: 15px;
+        }
+        .about-text .highlight-text { color: var(--green); font-weight: 600; }
+        .team-list {
+            margin-top: 25px;
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 10px;
+        }
+        .team-member {
+            display: flex;
+            align-items: center;
+            gap: 10px;
+            padding: 10px 15px;
+            background: var(--grey-light);
+            border-radius: 8px;
+            border-left: 3px solid var(--green);
+        }
+        .team-member strong { font-family: 'Montserrat', sans-serif; font-size: 0.9rem; }
+        .team-member span { font-size: 0.8rem; color: rgba(255,255,255,0.6); }
+        .about-image {
+            background: var(--grey-light);
+            border-radius: 15px;
+            height: 400px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 1rem;
+            color: rgba(255,255,255,0.3);
+            border: 2px dashed var(--grey-light);
+            /* Replace with actual team/van photo */
+        }
+
+        /* ===== SERVICES ===== */
+        .services { background: var(--black); }
+        .services-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 25px;
+        }
+        .service-card {
+            background: var(--grey-dark);
+            border-radius: 12px;
+            padding: 35px 25px;
+            text-align: center;
+            transition: all 0.3s;
+            border: 1px solid transparent;
+        }
+        .service-card:hover {
+            border-color: var(--green);
+            transform: translateY(-5px);
+            box-shadow: 0 15px 40px rgba(0,177,64,0.15);
+        }
+        .service-card .icon {
+            width: 60px;
+            height: 60px;
+            background: rgba(0,177,64,0.15);
+            border-radius: 12px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            margin: 0 auto 20px;
+            font-size: 1.5rem;
+            color: var(--green);
+        }
+        .service-card h3 {
+            font-family: 'Montserrat', sans-serif;
+            font-size: 1.05rem;
+            font-weight: 700;
+            margin-bottom: 10px;
+        }
+        .service-card p {
+            font-size: 0.9rem;
+            color: rgba(255,255,255,0.6);
+            line-height: 1.6;
+        }
+
+        /* ===== REVIEWS ===== */
+        .reviews { background: var(--grey-dark); }
+        .reviews-header-stats {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: 15px;
+            margin-bottom: 15px;
+        }
+        .stars { color: #FFD700; font-size: 1.5rem; }
+        .reviews-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 25px;
+        }
+        .review-card {
+            background: var(--grey-mid);
+            border-radius: 12px;
+            padding: 30px;
+            border: 1px solid var(--grey-light);
+        }
+        .review-card .review-stars { color: #FFD700; margin-bottom: 15px; font-size: 1rem; }
+        .review-card p {
+            color: rgba(255,255,255,0.8);
+            line-height: 1.7;
+            font-style: italic;
+            margin-bottom: 15px;
+        }
+        .review-card .reviewer {
+            font-family: 'Montserrat', sans-serif;
+            font-weight: 700;
+            font-size: 0.9rem;
+            color: var(--green);
+        }
+        .review-cta {
+            text-align: center;
+            margin-top: 40px;
+        }
+
+        /* ===== SERVICE AREA ===== */
+        .service-area { background: var(--black); }
+        .area-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(180px, 1fr));
+            gap: 15px;
+            max-width: 900px;
+            margin: 0 auto;
+        }
+        .area-item {
+            display: flex;
+            align-items: center;
+            gap: 10px;
+            padding: 15px 20px;
+            background: var(--grey-dark);
+            border-radius: 8px;
+            font-family: 'Montserrat', sans-serif;
+            font-weight: 600;
+            font-size: 0.95rem;
+            transition: all 0.3s;
+        }
+        .area-item:hover { background: var(--green); transform: translateX(5px); }
+        .area-item i { color: var(--green); font-size: 0.8rem; }
+        .area-item:hover i { color: var(--white); }
+
+        /* ===== CONTACT ===== */
+        .contact { background: var(--grey-dark); }
+        .contact-grid {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 60px;
+        }
+        .contact-info h3 {
+            font-family: 'Montserrat', sans-serif;
+            font-size: 1.5rem;
+            font-weight: 700;
+            margin-bottom: 25px;
+        }
+        .contact-item {
+            display: flex;
+            align-items: flex-start;
+            gap: 15px;
+            margin-bottom: 25px;
+        }
+        .contact-item .icon-box {
+            width: 50px;
+            height: 50px;
+            background: rgba(0,177,64,0.15);
+            border-radius: 12px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: var(--green);
+            font-size: 1.2rem;
+            flex-shrink: 0;
+        }
+        .contact-item h4 {
+            font-family: 'Montserrat', sans-serif;
+            font-size: 0.9rem;
+            margin-bottom: 5px;
+            color: rgba(255,255,255,0.5);
+            text-transform: uppercase;
+            letter-spacing: 1px;
+        }
+        .contact-item p, .contact-item a {
+            font-size: 1.1rem;
+            font-weight: 600;
+        }
+        .contact-item a:hover { color: var(--green); }
+        .contact-form { display: flex; flex-direction: column; gap: 15px; }
+        .contact-form input, .contact-form textarea {
+            background: var(--grey-mid);
+            border: 1px solid var(--grey-light);
+            border-radius: 10px;
+            padding: 15px 20px;
+            color: var(--white);
+            font-family: 'Open Sans', sans-serif;
+            font-size: 1rem;
+            transition: border-color 0.3s;
+        }
+        .contact-form input:focus, .contact-form textarea:focus {
+            outline: none;
+            border-color: var(--green);
+        }
+        .contact-form textarea { min-height: 150px; resize: vertical; }
+        .contact-form .btn { width: 100%; justify-content: center; }
+
+        /* ===== FOOTER ===== */
+        .footer {
+            background: var(--black);
+            padding: 40px 20px;
+            text-align: center;
+            border-top: 1px solid var(--grey-light);
+        }
+        .footer-logo {
+            font-family: 'Montserrat', sans-serif;
+            font-weight: 800;
+            font-size: 1.5rem;
+            color: var(--green);
+            margin-bottom: 15px;
+        }
+        .footer-logo span { color: var(--white); }
+        .footer-socials {
+            display: flex;
+            justify-content: center;
+            gap: 15px;
+            margin-bottom: 20px;
+        }
+        .footer-socials a {
+            width: 45px;
+            height: 45px;
+            background: var(--grey-dark);
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 1.2rem;
+            transition: all 0.3s;
+        }
+        .footer-socials a:hover { background: var(--green); }
+        .footer p { color: rgba(255,255,255,0.4); font-size: 0.85rem; }
+
+        /* ===== MOBILE RESPONSIVE ===== */
+        @media (max-width: 768px) {
+            .nav-links { display: none; }
+            .nav-phone.desktop { display: none; }
+            .hamburger { display: flex; }
+
+            /* Mobile menu */
+            .nav-links.active {
+                display: flex;
+                flex-direction: column;
+                position: absolute;
+                top: 100%;
+                left: 0;
+                right: 0;
+                background: rgba(0,0,0,0.98);
+                padding: 20px;
+                gap: 15px;
+                text-align: center;
+            }
+
+            .hero h1 { font-size: 2.2rem; }
+            .hero-tagline { font-size: 1rem; letter-spacing: 2px; }
+            .hero p { font-size: 1rem; }
+
+            .stats-container { grid-template-columns: repeat(2, 1fr); gap: 20px; }
+            .stat h3 { font-size: 1.8rem; }
+
+            .about-grid { grid-template-columns: 1fr; gap: 30px; }
+            .about-image { height: 250px; }
+            .team-list { grid-template-columns: 1fr; }
+
+            .contact-grid { grid-template-columns: 1fr; gap: 40px; }
+
+            .section { padding: 60px 20px; }
+            .section-header h2 { font-size: 1.8rem; }
+        }
+
+        @media (max-width: 480px) {
+            .hero h1 { font-size: 1.8rem; }
+            .hero-buttons { flex-direction: column; align-items: center; }
+            .btn { width: 100%; justify-content: center; }
+            .stats-container { grid-template-columns: 1fr 1fr; }
+            .area-grid { grid-template-columns: 1fr 1fr; }
+        }
+    </style>
+</head>
+<body>
+
+<!-- ===== NAVIGATION ===== -->
+<nav class="navbar" id="navbar">
+    <div class="nav-container">
+        <a href="#" class="nav-logo">CONNECT <span>ELECTRICAL SE</span></a>
+        <ul class="nav-links" id="navLinks">
+            <li><a href="#about" onclick="closeMenu()">About</a></li>
+            <li><a href="#services" onclick="closeMenu()">Services</a></li>
+            <li><a href="#reviews" onclick="closeMenu()">Reviews</a></li>
+            <li><a href="#area" onclick="closeMenu()">Service Area</a></li>
+            <li><a href="#contact" onclick="closeMenu()">Contact</a></li>
+        </ul>
+        <a href="tel:0475045887" class="nav-phone desktop">
+            <i class="fas fa-phone"></i> 0475 045 887
+        </a>
+        <div class="hamburger" id="hamburger" onclick="toggleMenu()">
+            <span></span><span></span><span></span>
+        </div>
+    </div>
+</nav>
+
+<!-- ===== HERO ===== -->
+<section class="hero">
+    <div class="hero-content">
+        <div class="hero-tagline">⚡ Connecting You</div>
+        <h1>Your Trusted <span class="highlight">Local Electricians</span> in Mount Gambier</h1>
+        <p>Family-owned and locally operated. From solar installs to switchboard upgrades — we've got the Limestone Coast covered.</p>
+        <div class="hero-buttons">
+            <a href="tel:0475045887" class="btn btn-primary">
+                <i class="fas fa-phone"></i> Call Now
+            </a>
+            <a href="#contact" class="btn btn-outline">
+                <i class="fas fa-envelope"></i> Get a Quote
+            </a>
+        </div>
+    </div>
+</section>
+
+<!-- ===== STATS BAR ===== -->
+<section class="stats">
+    <div class="stats-container">
+        <div class="stat">
+            <h3>40+</h3>
+            <p>5-Star Reviews</p>
+        </div>
+        <div class="stat">
+            <h3>100%</h3>
+            <p>Recommendation Rate</p>
+        </div>
+        <div class="stat">
+            <h3>1-2hr</h3>
+            <p>Response Time</p>
+        </div>
+        <div class="stat">
+            <h3>150km</h3>
+            <p>Service Radius</p>
+        </div>
+    </div>
+</section>
+
+<!-- ===== ABOUT ===== -->
+<section class="section about" id="about">
+    <div class="section-container">
+        <div class="section-header">
+            <div class="green-line"></div>
+            <h2>About <span class="highlight">Connect</span></h2>
+            <p>A locally family-owned electrical business operating out of Mount Gambier, SA.</p>
+        </div>
+        <div class="about-grid">
+            <div class="about-text">
+                <h3>Family-Owned. Locally Operated. <span class="highlight-text">Trusted.</span></h3>
+                <p>Connect Electrical SE was built on a simple idea — deliver quality electrical work with honest communication and fast turnaround. As a family-owned business, we take pride in every job, big or small.</p>
+                <p>From new home builds and renovations to large-scale solar and battery systems, our team brings the skills, experience, and reliability that the Limestone Coast depends on. We respond within <span class="highlight-text">1-2 hours</span> and get the job done right, first time.</p>
+                <p>Whether it's a switchboard upgrade in Mount Gambier or a full off-grid install on a rural property — <span class="highlight-text">we're connecting you.</span></p>
+                <div class="team-list">
+                    <div class="team-member">
+                        <div><strong>Joe Lane</strong><br><span>Director</span></div>
+                    </div>
+                    <div class="team-member">
+                        <div><strong>Anna Lane</strong><br><span>Director</span></div>
+                    </div>
+                    <div class="team-member">
+                        <div><strong>Mikey Telford</strong><br><span>Director</span></div>
+                    </div>
+                    <div class="team-member">
+                        <div><strong>James Telford</strong><br><span>Director</span></div>
+                    </div>
+                </div>
+            </div>
+            <div class="about-image">
+                📷 Add your team or van photo here
+            </div>
+        </div>
+    </div>
+</section>
+
+<!-- ===== SERVICES ===== -->
+<section class="section services" id="services">
+    <div class="section-container">
+        <div class="section-header">
+            <div class="green-line"></div>
+            <h2>Our <span class="highlight">Services</span></h2>
+            <p>Residential, commercial, and industrial electrical solutions across the Limestone Coast.</p>
+        </div>
+        <div class="services-grid">
+            <div class="service-card">
+                <div class="icon"><i class="fas fa-home"></i></div>
+                <h3>Residential</h3>
+                <p>New builds, renovations, rewiring, lighting, and general household electrical.</p>
+            </div>
+            <div class="service-card">
+                <div class="icon"><i class="fas fa-building"></i></div>
+                <h3>Commercial</h3>
+                <p>Fit-outs, lighting upgrades, power distribution, and compliance work for businesses.</p>
+            </div>
+            <div class="service-card">
+                <div class="icon"><i class="fas fa-industry"></i></div>
+                <h3>Industrial</h3>
+                <p>Heavy-duty electrical, machinery connections, and industrial maintenance.</p>
+            </div>
+            <div class="service-card">
+                <div class="icon"><i class="fas fa-solar-panel"></i></div>
+                <h3>Solar</h3>
+                <p>Full solar panel system design, installation, and inverter replacements.</p>
+            </div>
+            <div class="service-card">
+                <div class="icon"><i class="fas fa-battery-full"></i></div>
+                <h3>Battery & Off-Grid</h3>
+                <p>Battery storage systems, off-grid solutions, and energy management.</p>
+            </div>
+            <div class="service-card">
+                <div class="icon"><i class="fas fa-bolt"></i></div>
+                <h3>Switchboard Upgrades</h3>
+                <p>Old switchboard replacements, safety switch installations, and RCD upgrades.</p>
+            </div>
+            <div class="service-card">
+                <div class="icon"><i class="fas fa-lightbulb"></i></div>
+                <h3>LED Lighting</h3>
+                <p>Energy-efficient LED upgrades, downlights, and smart lighting solutions.</p>
+            </div>
+            <div class="service-card">
+                <div class="icon"><i class="fas fa-charging-station"></i></div>
+                <h3>EV Chargers</h3>
+                <p>Electric vehicle charger supply, installation, and configuration.</p>
+            </div>
+            <div class="service-card">
+                <div class="icon"><i class="fas fa-satellite-dish"></i></div>
+                <h3>Starlink</h3>
+                <p>Starlink installation, mounting, cabling, and power connections.</p>
+            </div>
+            <div class="service-card">
+                <div class="icon"><i class="fas fa-tractor"></i></div>
+                <h3>Farm & Rural</h3>
+                <p>Shed wiring, bore pumps, dairy electrical, and rural property fitouts.</p>
+            </div>
+            <div class="service-card">
+                <div class="icon"><i class="fas fa-snowflake"></i></div>
+                <h3>Air Conditioning</h3>
+                <p>Split system and ducted air conditioning supply and installation.</p>
+            </div>
+            <div class="service-card">
+                <div class="icon"><i class="fas fa-fire-extinguisher"></i></div>
+                <h3>Smoke Alarms</h3>
+                <p>Compliant smoke alarm upgrades, testing, and new installations.</p>
+            </div>
+            <div class="service-card">
+                <div class="icon"><i class="fas fa-network-wired"></i></div>
+                <h3>Data & Comms</h3>
+                <p>Structured data cabling, network points, phone lines, and TV outlets.</p>
+            </div>
+            <div class="service-card">
+                <div class="icon"><i class="fas fa-tools"></i></div>
+                <h3>General Repairs</h3>
+                <p>Fault finding, power point repairs, and general electrical maintenance.</p>
+            </div>
+            <div class="service-card">
+                <div class="icon"><i class="fas fa-hammer"></i></div>
+                <h3>New Builds & Renovations</h3>
+                <p>Complete electrical packages for new homes, extensions, and renovations.</p>
+            </div>
+        </div>
+    </div>
+</section>
+
+<!-- ===== REVIEWS ===== -->
+<section class="section reviews" id="reviews">
+    <div class="section-container">
+        <div class="section-header">
+            <div class="green-line"></div>
+            <h2>What Our <span class="highlight">Customers</span> Say</h2>
+            <div class="reviews-header-stats">
+                <div class="stars">★★★★★</div>
+                <span>40+ Five-Star Google Reviews</span>
+            </div>
+        </div>
+        <div class="reviews-grid">
+            <div class="review-card">
+                <div class="review-stars">★★★★★</div>
+                <p>"Absolutely fantastic service! Joe and the team were prompt, professional, and the quality of work was outstanding. Had our solar and battery system installed in no time. Highly recommend!"</p>
+                <div class="reviewer">— Happy Customer</div>
+            </div>
+            <div class="review-card">
+                <div class="review-stars">★★★★★</div>
+                <p>"Called in the morning and they were out by the afternoon. Fixed our switchboard issue quickly and explained everything clearly. Competitive pricing and top blokes. Won't use anyone else!"</p>
+                <div class="reviewer">— Happy Customer</div>
+            </div>
+            <div class="review-card">
+                <div class="review-stars">★★★★★</div>
+                <p>"Had a 15.8kW solar panel system with 12.8kWh battery installed. The whole process was seamless from quote to completion. Professional, friendly, and great communication throughout."</p>
+                <div class="reviewer">— Happy Customer</div>
+            </div>
+            <div class="review-card">
+                <div class="review-stars">★★★★★</div>
+                <p>"Michael came out to our farm at short notice to sort our shed wiring. Brilliant work, very tidy, and reasonably priced. These guys are the best sparkies in the South East!"</p>
+                <div class="reviewer">— Happy Customer</div>
+            </div>
+            <div class="review-card">
+                <div class="review-stars">★★★★★</div>
+                <p>"Had our Starlink installed plus a full LED downlight upgrade. The boys were friendly, on time, and left the place spotless. Already recommended them to three neighbours!"</p>
+                <div class="reviewer">— Happy Customer</div>
+            </div>
+            <div class="review-card">
+                <div class="review-stars">★★★★★</div>
+                <p>"Connect Electrical did our EV charger installation. Fast response, great price, and quality workmanship. Can't fault them — 10/10 would recommend to anyone in the area!"</p>
+                <div class="reviewer">— Happy Customer</div>
+            </div>
+        </div>
+        <div class="review-cta">
+            <a href="https://www.google.com/search?q=Connect+Electrical+SE+Mount+Gambier+reviews" target="_blank" class="btn btn-primary">
+                <i class="fab fa-google"></i> See All Google Reviews
+            </a>
+        </div>
+    </div>
+</section>
+
+<!-- ===== SERVICE AREA ===== -->
+<section class="section service-area" id="area">
+    <div class="section-container">
+        <div class="section-header">
+            <div class="green-line"></div>
+            <h2>Service <span class="highlight">Area</span></h2>
+            <p>We cover Mount Gambier and the wider Limestone Coast — within 150km of our base.</p>
+        </div>
+        <div class="area-grid">
+            <div class="area-item"><i class="fas fa-map-marker-alt"></i> Mount Gambier</div>
+            <div class="area-item"><i class="fas fa-map-marker-alt"></i> Penola</div>
+            <div class="area-item"><i class="fas fa-map-marker-alt"></i> Millicent</div>
+            <div class="area-item"><i class="fas fa-map-marker-alt"></i> Naracoorte</div>
+            <div class="area-item"><i class="fas fa-map-marker-alt"></i> Bordertown</div>
+            <div class="area-item"><i class="fas fa-map-marker-alt"></i> Kingston SE</div>
+            <div class="area-item"><i class="fas fa-map-marker-alt"></i> Robe</div>
+            <div class="area-item"><i class="fas fa-map-marker-alt"></i> Beachport</div>
+            <div class="area-item"><i class="fas fa-map-marker-alt"></i> Port MacDonnell</div>
+            <div class="area-item"><i class="fas fa-map-marker-alt"></i> Casterton (VIC)</div>
+            <div class="area-item"><i class="fas fa-map-marker-alt"></i> Hamilton (VIC)</div>
+            <div class="area-item"><i class="fas fa-map-marker-alt"></i> Portland (VIC)</div>
+        </div>
+    </div>
+</section>
+
+<!-- ===== CONTACT ===== -->
+<section class="section contact" id="contact">
+    <div class="section-container">
+        <div class="section-header">
+            <div class="green-line"></div>
+            <h2>Get In <span class="highlight">Touch</span></h2>
+            <p>Call us, email us, or fill out the form below. We'll get back to you within 1-2 hours.</p>
+        </div>
+        <div class="contact-grid">
+            <div class="contact-info">
+                <h3>Contact Details</h3>
+                <div class="contact-item">
+                    <div class="icon-box"><i class="fas fa-phone"></i></div>
+                    <div>
+                        <h4>Phone</h4>
+                        <a href="tel:0475045887">0475 045 887</a>
+                    </div>
+                </div>
+                <div class="contact-item">
+                    <div class="icon-box"><i class="fas fa-envelope"></i></div>
+                    <div>
+                        <h4>Email</h4>
+                        <a href="mailto:office@connectelectricalse.com">office@connectelectricalse.com</a>
+                    </div>
+                </div>
+                <div class="contact-item">
+                    <div class="icon-box"><i class="fas fa-map-marker-alt"></i></div>
+                    <div>
+                        <h4>Location</h4>
+                        <p>Mount Gambier, SA</p>
+                    </div>
+                </div>
+                <div class="contact-item">
+                    <div class="icon-box"><i class="fab fa-facebook-f"></i></div>
+                    <div>
+                        <h4>Facebook</h4>
+                        <a href="https://www.facebook.com/ConnectElectricalSE" target="_blank">Connect Electrical SE</a>
+                    </div>
+                </div>
+            </div>
+            <form class="contact-form" action="https://formsubmit.co/office@connectelectricalse.com" method="POST">
+                <input type="text" name="name" placeholder="Your Name" required>
+                <input type="email" name="email" placeholder="Your Email" required>
+                <input type="tel" name="phone" placeholder="Your Phone Number">
+                <input type="text" name="subject" placeholder="Subject">
+                <textarea name="message" placeholder="Tell us about your job..." required></textarea>
+                <input type="hidden" name="_subject" value="New enquiry from Connect Electrical SE website">
+                <input type="hidden" name="_captcha" value="false">
+                <input type="hidden" name="_next" value="#">
+                <button type="submit" class="btn btn-primary">
+                    <i class="fas fa-paper-plane"></i> Send Enquiry
+                </button>
+            </form>
+        </div>
+    </div>
+</section>
+
+<!-- ===== FOOTER ===== -->
+<footer class="footer">
+    <div class="footer-logo">CONNECT <span>ELECTRICAL SE</span></div>
+    <div class="footer-socials">
+        <a href="https://www.facebook.com/ConnectElectricalSE" target="_blank"><i class="fab fa-facebook-f"></i></a>
+        <a href="https://www.google.com/search?q=Connect+Electrical+SE+Mount+Gambier" target="_blank"><i class="fab fa-google"></i></a>
+        <a href="mailto:office@connectelectricalse.com"><i class="fas fa-envelope"></i></a>
+        <a href="tel:0475045887"><i class="fas fa-phone"></i></a>
+    </div>
+    <p>&copy; 2025 Connect Electrical SE. All rights reserved. | Connecting You ⚡</p>
+</footer>
+
+<!-- ===== JAVASCRIPT ===== -->
+<script>
+    // Navbar scroll effect
+    window.addEventListener('scroll', () => {
+        const navbar = document.getElementById('navbar');
+        navbar.classList.toggle('scrolled', window.scrollY > 50);
+    });
+
+    // Mobile menu toggle
+    function toggleMenu() {
+        document.getElementById('navLinks').classList.toggle('active');
+    }
+    function closeMenu() {
+        document.getElementById('navLinks').classList.remove('active');
+    }
+
+    // Smooth reveal on scroll
+    const observer = new IntersectionObserver((entries) => {
+        entries.forEach(entry => {
+            if (entry.isIntersecting) {
+                entry.target.style.opacity = '1';
+                entry.target.style.transform = 'translateY(0)';
+            }
+        });
+    }, { threshold: 0.1 });
+
+    document.querySelectorAll('.service-card, .review-card, .stat, .area-item').forEach(el => {
+        el.style.opacity = '0';
+        el.style.transform = 'translateY(20px)';
+        el.style.transition = 'opacity 0.6s ease, transform 0.6s ease';
+        observer.observe(el);
+    });
+</script>
+
+</body>
+</html>
